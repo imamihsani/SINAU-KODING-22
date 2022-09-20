@@ -1,0 +1,165 @@
+
+C:\Users\ASUS>cd c:\xampp\mysql\bin
+
+c:\xampp\mysql\bin>mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 8
+Server version: 10.4.24-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> create database db_tugassinaukoding;
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [(none)]> show databases;
++-----------------------+
+| Database              |
++-----------------------+
+| ag_tsp                |
+| aplikasidatamahasiswa |
+| db_perpusabrar        |
+| db_tugassinaukoding   |
+| eperpus               |
+| information_schema    |
+| masukdandaftar        |
+| mysql                 |
+| performance_schema    |
+| perpus                |
+| perpustakaanabrar     |
+| phpmyadmin            |
+| project_crud          |
+| test                  |
++-----------------------+
+14 rows in set (0.002 sec)
+
+MariaDB [(none)]> use db_tugassinaukoding;
+
+MariaDB [db_tugassinaukoding]> create table anggota(
+    -> id int not null primary key,
+    -> nama varchar(255),
+    -> jenis_kelamin varchar(255),
+    -> alamat varchar(255),
+    -> telp varchar(20),
+    -> id_user int);
+Query OK, 0 rows affected (0.122 sec)
+
+dan seterusnya sampai tabel2 yg lain...
+
+
+MariaDB [db_tugassinaukoding]> desc anggota;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| id            | int(11)      | NO   | PRI | NULL    |       |
+| nama          | varchar(255) | YES  |     | NULL    |       |
+| jenis_kelamin | varchar(255) | YES  |     | NULL    |       |
+| alamat        | varchar(255) | YES  |     | NULL    |       |
+| telp          | varchar(20)  | YES  |     | NULL    |       |
+| id_user       | int(11)      | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+6 rows in set (0.019 sec)
+
+MariaDB [db_tugassinaukoding]> desc user;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| id_user  | int(11)      | NO   | PRI | NULL    |       |
+| username | varchar(255) | YES  |     | NULL    |       |
+| password | varchar(255) | YES  |     | NULL    |       |
+| email    | varchar(255) | YES  |     | NULL    |       |
+| role     | varchar(255) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+5 rows in set (0.018 sec)
+
+MariaDB [db_tugassinaukoding]> desc petugas;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| id      | int(11)      | NO   | PRI | NULL    |       |
+| nama    | varchar(255) | YES  |     | NULL    |       |
+| telp    | varchar(255) | YES  |     | NULL    |       |
+| alamat  | tinytext     | YES  |     | NULL    |       |
+| user_id | int(11)      | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+5 rows in set (0.020 sec)
+
+MariaDB [db_tugassinaukoding]> desc peminjaman;
++-------------+---------+------+-----+---------+-------+
+| Field       | Type    | Null | Key | Default | Extra |
++-------------+---------+------+-----+---------+-------+
+| id          | int(11) | NO   | PRI | NULL    |       |
+| tgl_pinjam  | date    | YES  |     | NULL    |       |
+| tgl_kembali | date    | YES  |     | NULL    |       |
+| anggota_id  | int(11) | YES  |     | NULL    |       |
+| petugas_id  | int(11) | YES  |     | NULL    |       |
++-------------+---------+------+-----+---------+-------+
+5 rows in set (0.027 sec)
+
+MariaDB [db_tugassinaukoding]> desc pengembalian;
++------------------+--------------+------+-----+---------+-------+
+| Field            | Type         | Null | Key | Default | Extra |
++------------------+--------------+------+-----+---------+-------+
+| id               | int(11)      | NO   | PRI | NULL    |       |
+| tgl_pengembalian | varchar(255) | YES  |     | NULL    |       |
+| denda            | double       | YES  |     | NULL    |       |
+| peminjaman_id    | int(11)      | YES  |     | NULL    |       |
+| anggota_id       | int(11)      | YES  |     | NULL    |       |
+| petugas_id       | int(11)      | YES  |     | NULL    |       |
++------------------+--------------+------+-----+---------+-------+
+6 rows in set (0.020 sec)
+
+MariaDB [db_tugassinaukoding]> desc peminjaman_detail;
++---------------+---------+------+-----+---------+-------+
+| Field         | Type    | Null | Key | Default | Extra |
++---------------+---------+------+-----+---------+-------+
+| peminjaman_id | int(11) | NO   | PRI | NULL    |       |
+| buku_id       | int(11) | YES  |     | NULL    |       |
++---------------+---------+------+-----+---------+-------+
+2 rows in set (0.022 sec)
+
+MariaDB [db_tugassinaukoding]> desc buku;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| id           | int(11)      | NO   | PRI | NULL    |       |
+| judul        | varchar(255) | YES  |     | NULL    |       |
+| tahun_terbit | varchar(255) | YES  |     | NULL    |       |
+| jumlah       | int(11)      | YES  |     | NULL    |       |
+| isbn         | varchar(255) | YES  |     | NULL    |       |
+| pengarang_id | int(11)      | YES  |     | NULL    |       |
+| penerbit_id  | int(11)      | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+7 rows in set (0.021 sec)
+
+MariaDB [db_tugassinaukoding]> desc pengembalian_detail;
++-----------------+---------+------+-----+---------+-------+
+| Field           | Type    | Null | Key | Default | Extra |
++-----------------+---------+------+-----+---------+-------+
+| pengembalian_id | int(11) | NO   | PRI | NULL    |       |
+| buku_id         | int(11) | YES  |     | NULL    |       |
++-----------------+---------+------+-----+---------+-------+
+2 rows in set (0.027 sec)
+
+MariaDB [db_tugassinaukoding]> desc pengarang;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| id     | int(11)      | NO   | PRI | NULL    |       |
+| nama   | varchar(255) | YES  |     | NULL    |       |
+| alamat | varchar(255) | YES  |     | NULL    |       |
+| telp   | varchar(255) | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+4 rows in set (0.022 sec)
+
+MariaDB [db_tugassinaukoding]> desc penerbit;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| id     | int(11)      | NO   | PRI | NULL    |       |
+| nama   | varchar(255) | YES  |     | NULL    |       |
+| alamat | varchar(255) | YES  |     | NULL    |       |
+| telp   | varchar(255) | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+4 rows in set (0.024 sec)
