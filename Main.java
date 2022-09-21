@@ -1,14 +1,45 @@
 import java.util.Scanner;
 public class Main {
 public static void main(String[] args) {
-       System.out.println("Menghitung Rumus Bangun Datar");
-       Main bangundatar = new Main();
-       bangundatar.persegi();
-       bangundatar.persegi_panjang();
-       bangundatar.segitiga();
-       bangundatar.lingkaran();
+       Scanner input=new Scanner(System.in);
+       int menu = 0;
+
+        while (menu != 5) {
+
+            System.out.println("============MENU============");
+            System.out.println("1. Persegi");
+            System.out.println("2. Persegi Panjang");
+            System.out.println("3. Segitiga");
+            System.out.println("4. Lingkaran");
+            System.out.println("5. Keluar");
+
+            System.out.print("Masukan pilihan menu : ");
+            menu = input.nextInt();
+
+            switch (menu) {
+                case 1:
+                    persegi();
+                    break;
+                case 2:
+                    persegi_panjang();
+                    break;
+                case 3:
+                    segitiga();
+                    break;
+               case 4:
+                     lingkaran();
+                     break;
+              
+                default:
+                    System.out.println("Pilihan tidak sesuai!!");
+                    break;
+            }
+        }
+    
 }
-public void persegi() 
+
+
+public static void persegi() 
 {
        Scanner input = new Scanner(System.in);
    
@@ -22,7 +53,7 @@ public void persegi()
        System.out.print("Luas = " + (int)luas + "\nKeliling  = "+ (int)keliling);
        System.out.println("");
 }
-public void persegi_panjang()
+public static void persegi_panjang()
  {
         Scanner input = new Scanner(System.in);
         double p,l,luas,keliling;
@@ -37,7 +68,7 @@ public void persegi_panjang()
         System.out.print("Luas  = " + (int)luas + "\nKeliling  = "+ (int)keliling);
         System.out.println("");
         }
-public void segitiga()
+public static void segitiga()
 {
        Scanner input = new Scanner(System.in);
        double a,t,luas,keliling;
@@ -49,10 +80,10 @@ public void segitiga()
        System.out.println("=>");
        luas = 0.5*a*t;
        keliling = 3*t;
-       System.out.print("Luas = " + (int)luas + "\nKeliling = " + (int)keliling);
+       System.out.println("Luas = " + (int)luas + "\nKeliling = " + (int)keliling);
        System.out.print("");
 }
-public void lingkaran()
+public static void lingkaran()
 {
        Scanner input = new Scanner(System.in);
        double r, luas,keliling;
